@@ -5,7 +5,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from google import genai
 from dotenv import load_dotenv
-from src.database import RoboticsKnowledgeBase
+import src.database
 
 # Load environment variables
 load_dotenv()
@@ -26,7 +26,7 @@ app.add_middleware(
 client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
 
 # Initialize knowledge base
-kb = RoboticsKnowledgeBase()
+kb = src.database.RoboticsKnowledgeBase()
 
 # Load PDF from project folder
 pdf_path = os.path.join("data", "robotics_qa.pdf")
